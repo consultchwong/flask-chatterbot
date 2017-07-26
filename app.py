@@ -1,4 +1,10 @@
-from flask import Flask, render_template
+import urllib
+import json
+import os
+
+#from flask import Flask, render_template
+from flask import Flask, request, make_response, render_template
+
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
