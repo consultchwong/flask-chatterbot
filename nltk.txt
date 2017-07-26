@@ -1,0 +1,5 @@
+wordnet
+stopwords
+pros_cons
+sentiwordnet
+verbnet
