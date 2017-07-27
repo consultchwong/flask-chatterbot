@@ -57,7 +57,12 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-def makeWebhookResult(req):    if req.get("result").get("action") != "input.welcome":        return {}    result = req.get("result")    parameters = result.get("parameters")    message = parameters.get("message")
+def makeWebhookResult(req):
+    if req.get("result").get("action") != "input.welcome":
+        return {}
+    result = req.get("result")
+    parameters = result.get("parameters")
+    message = parameters.get("message")
     speech = str(english_bot.get_response(message))
     print("Response:" + speech)
     return {        
