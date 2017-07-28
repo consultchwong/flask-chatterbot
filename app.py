@@ -44,40 +44,6 @@ def home():
 @app.route("/get/<string:query>")
 def get_raw_response(query):
     return str(english_bot.get_response(query))
-
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    req = request.get_json(silent=True, force=True)
-    print("Request:")
-    print(json.dumps(req, indent=4))
-    res = makeWebhookResult(req)
-    res = json.dumps(res, indent=4)
-    print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
-
-def makeWebhookResult(req):
-    if req.get("result").get("action") != "input.welcome":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    message = parameters.get("message")
-    speech = str(english_bot.get_response(message))
-    print("Response:" + speech)
-    return {        
-        "speech": speech,        
-        "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
-    }
-            
-#if __name__ == "__main__":
-#    app.run()
-
-
-    
 if __name__ == '__main__':    
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
