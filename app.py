@@ -62,9 +62,9 @@ def makeWebhookResult(req):
     if req.get("result").get("action") != "input.welcome":
         return {}
     result = req.get("result")
-    parameters = result.get("parameters")
-    message = parameters.get("message")
-    speech = str(english_bot.get_response(message))
+    resolvedquery = result.get("resolvedQuery")
+    
+    speech = str(english_bot.get_response(resolvedquery))
     print("speech:" + speech)
     return {
         "speech": speech,
